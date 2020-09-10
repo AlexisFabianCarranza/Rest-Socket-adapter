@@ -1,6 +1,6 @@
-import axios from "axios";
+const axios = require("axios");
 
-export const get = (url) => {
+const get = (url) => {
   try {
     return axios.get(url);
   } catch (e) {
@@ -8,7 +8,7 @@ export const get = (url) => {
   }
 };
 
-export const post = async (url, body, options) => {
+const post = async (url, body, options) => {
   try {
     const res = await axios.post(url, body, options);
     return res.data;
@@ -26,7 +26,7 @@ export const post = async (url, body, options) => {
   }
 };
 
-export const remove = (url) => {
+const remove = (url) => {
   try {
     return axios.delete(url);
   } catch (e) {
@@ -43,7 +43,7 @@ export const remove = (url) => {
   }
 };
 
-export const update = async (url, body) => {
+const update = async (url, body) => {
   try {
     const res = await axios.put(url, body);
     return res.data;
@@ -61,10 +61,19 @@ export const update = async (url, body) => {
   }
 };
 
-export const setToken = (token) => {
+const setToken = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 
-export const removeToken = () => {
+const removeToken = () => {
   axios.defaults.headers.common["Authorization"] = null;
+};
+
+module.exports = {
+  get,
+  post,
+  update,
+  remove,
+  setToken,
+  removeToken,
 };

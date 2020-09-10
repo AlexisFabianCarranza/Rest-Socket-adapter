@@ -4,9 +4,10 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var chatiggoAdapter = require("./routes/chatiggoAdapter");
+var chatiggo = require("./routes/chatiggo");
 
 const login = require("./chatiggo/login");
-login();
+//login();
 
 var app = express();
 
@@ -21,7 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/chatiggoAdapter", chatiggoAdapter);
-app.use("/", chattigoController);
+app.use("/", chatiggo);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
